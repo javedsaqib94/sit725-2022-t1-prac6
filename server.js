@@ -21,12 +21,16 @@ const addNumbers = (number1, number2) => {
     var result = num1 + num2;
     return result;
 }
-app.get("/addTwoNumbers/number1/number2",(req,res) => {
-    var number1 = req.params.number1;
-    var number2 = req.params.number2;
-    var result = addNumbers(number1,number2);
-    res.json({statusCode: 200, data: result, message:"Success"});
-});
+app.get("/addTwoNumbers/:firstNumber/:secondNumber",(req,res) => {
+    var number1 = req.params.firstNumber;
+    var number2 = req.params.secondNumber;
+    var result = addNumbers(number1,number2)
+    if(result == null) {
+        res.json({result: result, statusCode: 400}).status(400)
+      }
+      else { res.json({result: result, statusCode: 200}).status(200) } 
+})
+
 
 var port = process.env.port || 3000;
 

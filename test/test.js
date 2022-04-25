@@ -39,6 +39,11 @@ var request = require("request");
             expect(body.statusCode).to.equal(400);
             done()
           });
+    });it("returns the result as null", function(done) {
+        request(url, function(error, response, body) {
+            body = JSON.parse(body)
+            expect(body.result).to.be.a('null');
+            done()
+          });
     });
-    
   });
