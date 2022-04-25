@@ -25,6 +25,22 @@ describe("Add string and number", function() {
   });
 });
 
+describe("Validate Projects api", function() {
+    var url = "http://localhost:3000/api/projects";
+    it("should return status 200", function(done) {
+        request(url, function(error, response, body) {
+            expect(response.statusCode).to.equal(200);
+            done()
+          });
+    });
+    it("returns the result as array", function(done) {
+        request(url, function(error, response, body) {
+            body = JSON.parse(body)
+            expect(body.data).to.be.a('array');
+            done()
+          });
+    });
+  });
 
   // describe("Add strings and number", function() {
   //   var url = "http://localhost:3000/addTwoNumbers/a/5";
